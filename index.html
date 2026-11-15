@@ -205,12 +205,19 @@ var AIDE = {
     sommaire: 'Sommaire',
     haut: '↑ Sommaire',
     sections: [
-      { id: 'demarrer', t: "1. Ouvrir l'application", h: [
+      { id: 'demarrer', t: "1. Ouvrir l'application et la retrouver", h: [
         "<p>Ouvre le lien donné par ton professeur dans le navigateur de ton téléphone (Safari sur iPhone, Chrome sur Android) ou de ton ordinateur.</p>",
-        "<p>Place l'application sur l'écran d'accueil, pour la retrouver comme une application :</p>",
-        "<ul><li><b>iPhone (Safari)</b> : touche le bouton Partager, puis « Sur l'écran d'accueil ».</li>",
-        "<li><b>Android (Chrome)</b> : touche le menu ⋮, puis « Ajouter à l'écran d'accueil » (ou « Installer l'application »).</li></ul>",
-        "<p>Ouvre ensuite toujours l'application par cette icône : tu retrouveras ta progression.</p>",
+        "<p><b>Pour la retrouver facilement, crée un signet (favori) dans ton navigateur :</b></p>",
+        "<ul><li><b>Safari (iPhone, iPad)</b> : touche le bouton Partager, puis « Ajouter un signet » (ou « Ajouter aux favoris »).</li>",
+        "<li><b>Safari (Mac)</b> : menu Signets, puis « Ajouter un signet » (⌘D).</li>",
+        "<li><b>Chrome</b> : touche l'étoile ☆ dans la barre d'adresse (⌘D ou Ctrl+D sur ordinateur ; menu ⋮ sur Android).</li></ul>",
+        "<p>Ouvre ensuite toujours l'application par ce signet, dans le même navigateur : tu retrouveras ta progression.</p>",
+        "<h3>Variante : une icône sur l'écran d'accueil ou dans le Dock</h3>",
+        "<p>Tu peux aussi placer Vocalésia comme une application :</p>",
+        "<ul><li><b>iPhone / iPad (Safari)</b> : bouton Partager, puis « Sur l'écran d'accueil ».</li>",
+        "<li><b>Android (Chrome)</b> : menu ⋮, puis « Ajouter à l'écran d'accueil » (ou « Installer l'application »).</li>",
+        "<li><b>Mac (Safari)</b> : menu Fichier, puis « Ajouter au Dock ».</li></ul>",
+        "<div class='notice'><b>Attention.</b> Une icône ouvre l'application dans son propre espace : elle a <b>sa propre progression, indépendante de celle de ton navigateur</b>. Si tu as déjà révisé dans le navigateur, l'icône repart de zéro. Pour passer de l'un à l'autre, utilise la même procédure que pour changer d'appareil : exporte ta progression, puis importe-la à l'autre endroit (section 7). Choisis une seule façon de travailler et garde-la.</div>",
         "<div class='notice'><b>Important.</b> Ta progression est enregistrée dans ce navigateur, sur cet appareil. Si tu utilises un autre navigateur ou un autre appareil, tu repartiras de zéro (voir la section 7 pour la déplacer).</div>"] },
       { id: 'cartes', t: "2. Choisir les cartes (onglet « Cartes »)", h: [
         "<ul><li>Les mots sont rangés par leçon. <b>Coche</b> les mots que tu veux mémoriser, ou la case de la leçon pour tout cocher d'un coup. Seules les cartes cochées te sont proposées.</li>",
@@ -256,10 +263,10 @@ var AIDE = {
         "<p><b>Conseil.</b> Exporte ta progression de temps en temps, et toujours avant de changer de téléphone ou d'effacer les données de ton navigateur.</p>",
         "<h3>Quand ma progression peut-elle disparaître ?</h3>",
         "<p>Ta progression est enregistrée dans ton navigateur, sur ton appareil. Elle ne disparaît pas lors d'une mise à jour habituelle du système, mais elle peut être perdue dans ces situations :</p>",
-        "<ul><li><b>Longue pause sur iPhone ou iPad</b> : si tu n'ouvres pas Vocalésia pendant une longue période (une semaine ou plus d'utilisation de Safari, par exemple pendant les vacances), Safari peut supprimer les données du site. Ajouter Vocalésia à l'écran d'accueil limite ce risque.</li>",
+        "<ul><li><b>Longue pause sur iPhone ou iPad</b> : si tu n'ouvres pas Vocalésia pendant une longue période (une semaine ou plus d'utilisation de Safari, par exemple pendant les vacances), Safari peut supprimer les données du site. Une icône sur l'écran d'accueil limite ce risque, mais elle a sa propre progression (voir la section 1).</li>",
         "<li><b>Nettoyage du navigateur</b> : « effacer les données de sites », une application de nettoyage ou la réinstallation du navigateur supprime tout.</li>",
         "<li><b>Téléphone presque plein</b> : le système peut libérer de la place en supprimant des données de sites peu utilisés.</li>",
-        "<li><b>Autre appareil ou autre navigateur</b> : la progression ne suit pas ; il faut l'exporter puis l'importer.</li>",
+        "<li><b>Autre appareil, autre navigateur ou icône (écran d'accueil, Dock)</b> : chacun a sa propre progression, qui ne suit pas ; il faut l'exporter puis l'importer.</li>",
         "<li><b>Navigation privée</b> : tout disparaît à la fermeture de la fenêtre.</li></ul>",
         "<div class='notice'><b>À faire avant une longue pause, un changement de téléphone ou un nettoyage.</b> Va dans Réglages et exporte ta progression, puis garde le fichier (dans tes documents, ou envoie-le toi par e-mail). Tu pourras le réimporter si besoin.</div>"] },
       { id: 'conseils', t: "8. Conseils pour bien mémoriser", h: [
@@ -272,7 +279,7 @@ var AIDE = {
         "<tr><td>Je n'entends rien</td><td>Vérifie le volume du téléphone et qu'il n'est pas en mode silencieux. Va dans « Réglages » et touche « Tester la voix ».</td></tr>",
         "<tr><td>L'application dit qu'aucune voix française n'a été trouvée</td><td>Installe une voix française dans les réglages de ton appareil (accessibilité ou synthèse vocale), puis recharge la page.</td></tr>",
         "<tr><td>Je ne vois pas les nouvelles cartes</td><td>Recharge la page (actualise-la). Attends quelques minutes si ton professeur vient de les publier.</td></tr>",
-        "<tr><td>Ma progression a disparu</td><td>Tu utilises peut-être un autre navigateur ou un autre appareil, ou les données du navigateur ont été effacées. Importe ta dernière sauvegarde (section 7).</td></tr>",
+        "<tr><td>Ma progression a disparu</td><td>Tu utilises peut-être un autre navigateur, un autre appareil, ou l'icône à la place du signet (ou l'inverse), ou les données du navigateur ont été effacées. Importe ta dernière sauvegarde (section 7).</td></tr>",
         "<tr><td>Un message dit que la progression ne peut pas être enregistrée</td><td>Tu es sans doute en navigation privée. Ouvre l'application dans un onglet normal.</td></tr>",
         "<tr><td>La page est vide ou affiche une erreur</td><td>Préviens ton professeur : le fichier de cartes doit être vérifié.</td></tr></table>"] }
     ]
@@ -298,12 +305,19 @@ var AIDE = {
         "<tr><td><b>Nouveau</b></td><td>New</td></tr>",
         "<tr><td><b>Tout réduire</b></td><td>Collapse all</td></tr>",
         "<tr><td><b>Exporter · Importer · Réinitialiser</b></td><td>Export · Import · Reset</td></tr></table>"] },
-      { id: 'demarrer', t: '1. Open the app and add it to your home screen', h: [
+      { id: 'demarrer', t: '1. Open the app and find it again', h: [
         "<p>Open the link your teacher gave you in your phone's browser (Safari on iPhone, Chrome on Android) or on your computer.</p>",
-        "<p>Add the app to your home screen so you can open it like any other app:</p>",
-        "<ul><li><b>iPhone (Safari):</b> tap the Share button, then “Add to Home Screen”.</li>",
-        "<li><b>Android (Chrome):</b> tap the ⋮ menu, then “Add to Home screen” (or “Install app”).</li></ul>",
-        "<p>From then on, always open the app from that icon: your progress will be there.</p>",
+        "<p><b>To find it easily, create a bookmark in your browser:</b></p>",
+        "<ul><li><b>Safari (iPhone, iPad):</b> tap the Share button, then “Add Bookmark” (or “Add to Favorites”).</li>",
+        "<li><b>Safari (Mac):</b> Bookmarks menu, then “Add Bookmark” (⌘D).</li>",
+        "<li><b>Chrome:</b> tap the star ☆ in the address bar (⌘D or Ctrl+D on a computer; ⋮ menu on Android).</li></ul>",
+        "<p>From then on, always open the app from that bookmark, in the same browser: your progress will be there.</p>",
+        "<h3>Alternative: an icon on your home screen or in the Dock</h3>",
+        "<p>You can also place Vocalésia like an app:</p>",
+        "<ul><li><b>iPhone / iPad (Safari):</b> Share button, then “Add to Home Screen”.</li>",
+        "<li><b>Android (Chrome):</b> ⋮ menu, then “Add to Home screen” (or “Install app”).</li>",
+        "<li><b>Mac (Safari):</b> File menu, then “Add to Dock”.</li></ul>",
+        "<div class='notice'><b>Warning.</b> An icon opens the app in its own space: it has <b>its own progress, independent of your browser's</b>. If you have already been reviewing in the browser, the icon starts from zero. To switch from one to the other, use the same procedure as for changing device: export your progress, then import it at the other place (section 7). Choose one way of working and stick to it.</div>",
         "<div class='notice'><b>Important.</b> Your progress is saved in this browser, on this device. If you use another browser or another device, you will start from zero (see section 7 to move your progress).</div>"] },
       { id: 'cartes', t: '2. Choose the cards you want to learn (tab « Cartes »)', h: [
         "<ul><li>Words are grouped by lesson. <b>Tick</b> the words you want to learn, or tick the lesson box to select the whole lesson. Only the ticked cards are offered to you.</li>",
@@ -349,10 +363,10 @@ var AIDE = {
         "<p><b>Tip.</b> Export your progress from time to time, and always before changing phone or clearing your browser data.</p>",
         "<h3>When could my progress disappear?</h3>",
         "<p>Your progress is saved in your browser, on your device. It does not disappear with a usual system update, but it can be lost in these situations:</p>",
-        "<ul><li><b>A long break on iPhone or iPad:</b> if you do not open Vocalésia for a long time (a week or more of Safari use, for example over the holidays), Safari may delete the site's data. Adding Vocalésia to your home screen reduces this risk.</li>",
+        "<ul><li><b>A long break on iPhone or iPad:</b> if you do not open Vocalésia for a long time (a week or more of Safari use, for example over the holidays), Safari may delete the site's data. A home-screen icon reduces this risk, but it has its own progress (see section 1).</li>",
         "<li><b>Cleaning your browser:</b> “clear website data”, a cleaning app or reinstalling the browser deletes everything.</li>",
         "<li><b>A nearly full phone:</b> the system may free up space by deleting data from rarely used sites.</li>",
-        "<li><b>Another device or another browser:</b> your progress does not follow you; you have to export it and import it.</li>",
+        "<li><b>Another device, another browser or an icon (home screen, Dock):</b> each has its own progress, which does not follow you; you have to export it and import it.</li>",
         "<li><b>Private browsing:</b> everything disappears when you close the window.</li></ul>",
         "<div class='notice'><b>Do this before a long break, a change of phone or a clean-up.</b> Go to Réglages (Settings) and export your progress, then keep the file (in your documents, or email it to yourself). You can import it again if needed.</div>"] },
       { id: 'conseils', t: '8. Tips for effective memorising', h: [
@@ -365,7 +379,7 @@ var AIDE = {
         "<tr><td>I can't hear anything</td><td>Check your phone's volume and that it is not in silent mode. Go to « Réglages » and tap « Tester la voix » (Test the voice).</td></tr>",
         "<tr><td>The app says no French voice was found</td><td>Install a French voice in your device settings (accessibility or speech), then reload the page.</td></tr>",
         "<tr><td>I don't see the new cards</td><td>Reload the page. Wait a few minutes if your teacher has just published them.</td></tr>",
-        "<tr><td>My progress has disappeared</td><td>You may be using another browser or device, or the browser data may have been cleared. Import your latest backup (section 7).</td></tr>",
+        "<tr><td>My progress has disappeared</td><td>You may be using another browser, another device, or the icon instead of the bookmark (or the reverse), or the browser data may have been cleared. Import your latest backup (section 7).</td></tr>",
         "<tr><td>A message says my progress cannot be saved</td><td>You are probably in private browsing. Open the app in a normal tab.</td></tr>",
         "<tr><td>The page is empty or shows an error</td><td>Tell your teacher: the card file needs to be checked.</td></tr></table>"] }
     ]
