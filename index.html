@@ -114,6 +114,7 @@ b.hl{color:var(--accent)}
 .overlay .card{margin:6px 0}
 .overlay .btnrow{justify-content:center}
 .row .speak+.speak{margin-left:-2px}
+.speak.ring{outline:2px solid var(--accent);outline-offset:2px}
 [hidden]{display:none !important}
 </style>
 </head>
@@ -508,7 +509,11 @@ function demarrer() {
       if (currentAudio) { try { currentAudio.pause(); } catch (e) {} }
       document.removeEventListener('keydown', onKey, true);
       ov.remove();
-      if (opener && opener.focus) opener.focus();
+      if (opener && opener.focus) {
+        opener.focus();
+        opener.classList.add('ring');
+        opener.addEventListener('blur', function () { opener.classList.remove('ring'); }, { once: true });
+      }
     }
     function onKey(e) { if (e.key === 'Escape') { e.stopPropagation(); e.preventDefault(); close(); } }
     var closeBtn = h('button', { class: 'secondary', type: 'button', onclick: close }, 'Fermer');
