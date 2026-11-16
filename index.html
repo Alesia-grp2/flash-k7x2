@@ -109,6 +109,11 @@ b.hl{color:var(--accent)}
 .help .notice{margin:.8rem 0}
 .help .intro{margin-top:.4rem}
 .help .btnrow .primary{width:auto;padding:10px 18px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;overflow:auto}
+.overlay .sheet{background:var(--bg);border-radius:var(--radius);max-width:560px;width:100%;max-height:90vh;overflow:auto;padding:4px 12px 14px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.overlay .card{margin:6px 0}
+.overlay .btnrow{justify-content:center}
+.row .speak+.speak{margin-left:-2px}
 [hidden]{display:none !important}
 </style>
 </head>
@@ -223,7 +228,7 @@ var AIDE = {
         "<ul><li>Les mots sont rangés par leçon. <b>Coche</b> les mots que tu veux mémoriser, ou la case de la leçon pour tout cocher d'un coup. Seules les cartes cochées te sont proposées.</li>",
         "<li>Le compteur à droite de chaque leçon indique combien de cartes tu as cochées (par exemple 3 / 7).</li>",
         "<li>Le <b>triangle</b> à gauche d'une leçon permet de la replier ou de la développer. La case <b>« Tout réduire »</b> replie toutes les leçons d'un coup ; en la décochant, tu les développes toutes.</li>",
-        "<li>Le bouton 🔊 d'un mot te le fait écouter.</li>",
+        "<li>Le bouton 🔊 d'un mot te le fait écouter. Le bouton <b>œil</b> à côté affiche la <b>fiche du mot</b> : sa définition et toutes ses phrases d'exemple.</li>",
         "<li>Un mot suivi d'un <b>astérisque</b> (par exemple « un flic* ») appartient au <b>registre familier</b> : on l'entend à l'oral entre amis, mais on l'évite à l'écrit soigné ou avec un supérieur.</li>",
         "<li>À côté de chaque mot déjà étudié, une pastille indique quand il reviendra : « À revoir », « Demain » ou « Dans n j ».</li>",
         "<li><b>Nouveautés</b> : quand ton professeur ajoute des cartes, un badge rouge apparaît sur l'onglet « Cartes ». Les nouveaux mots et leur leçon s'affichent en rouge, avec la pastille « Nouveau », jusqu'au prochain ajout.</li></ul>"] },
@@ -323,7 +328,7 @@ var AIDE = {
         "<ul><li>Words are grouped by lesson. <b>Tick</b> the words you want to learn, or tick the lesson box to select the whole lesson. Only the ticked cards are offered to you.</li>",
         "<li>The counter to the right of each lesson shows how many cards you have ticked (for example 3 / 7).</li>",
         "<li>The <b>triangle</b> to the left of a lesson folds or unfolds it. The <b>« Tout réduire »</b> (Collapse all) box folds every lesson at once; untick it to unfold them all.</li>",
-        "<li>The 🔊 button next to a word plays it.</li>",
+        "<li>The 🔊 button next to a word plays it. The <b>eye</b> button beside it shows the word's <b>card</b>: its definition and all its example sentences.</li>",
         "<li>A word followed by an <b>asterisk</b> (for example « un flic* ») belongs to <b>informal (colloquial) French</b>: you hear it in everyday speech among friends, but you avoid it in careful writing or with a superior.</li>",
         "<li>Next to each word you have already studied, a label tells you when it will come back: « À revoir » (due now), « Demain » (tomorrow) or « Dans n j » (in n days).</li>",
         "<li><b>New words:</b> when your teacher adds cards, a red badge appears on the « Cartes » tab. The new words and their lesson are shown in red, with the label « Nouveau » (New), until the next addition.</li></ul>"] },
@@ -489,6 +494,35 @@ function demarrer() {
   }
   function speakBtn(text, audioUrl, cls) {
     return h('button', { class: cls || 'speak', type: 'button', 'aria-label': 'Écouter', onclick: function (ev) { ev.stopPropagation(); speak(text, audioUrl); } }, '🔊');
+  }
+
+  // Fiche d'une carte (onglet Cartes) : même présentation que la réponse de l'exercice « écoute le mot »
+  function showCard(id, opener) {
+    var c = byId[id]; if (!c) return;
+    var card = cardView(c, { id: id, mode: 1 }, true);
+    var lab = card.querySelector('.label'); if (lab) lab.remove();
+    var sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-label': c.mot });
+    var ov = h('div', { class: 'overlay' }, sheet);
+    function close() {
+      if ('speechSynthesis' in window) speechSynthesis.cancel();
+      if (currentAudio) { try { currentAudio.pause(); } catch (e) {} }
+      document.removeEventListener('keydown', onKey, true);
+      ov.remove();
+      if (opener && opener.focus) opener.focus();
+    }
+    function onKey(e) { if (e.key === 'Escape') { e.stopPropagation(); e.preventDefault(); close(); } }
+    var closeBtn = h('button', { class: 'secondary', type: 'button', onclick: close }, 'Fermer');
+    sheet.append(h('p', { class: 'muted small', style: 'margin:.5rem 0 0' }, c.lecon || ''), card, h('div', { class: 'btnrow' }, closeBtn));
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    document.addEventListener('keydown', onKey, true);
+    document.body.append(ov);
+    closeBtn.focus();
+  }
+  function eyeBtn(id) {
+    var b = h('button', { class: 'speak', type: 'button', 'aria-label': 'Voir la carte' });
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+    b.addEventListener('click', function (ev) { ev.stopPropagation(); showCard(id, b); });
+    return b;
   }
 
   /* ---------------- Navigation ---------------- */
@@ -876,7 +910,7 @@ function demarrer() {
         }
         det.append(h('div', { class: 'row' },
           h('label', {}, cb, h('span', { class: 't' }, h('span', { class: hl[id] ? 'fresh' : '' }, motAff(c)), c.indice ? h('span', { class: 'indice' }, ' (' + c.indice + ')') : null, chip)),
-          speakBtn(c.mot, c.audio)));
+          eyeBtn(id), speakBtn(c.mot, c.audio)));
       });
       refreshHead();
       dets.push({ det: det, name: g.name });
