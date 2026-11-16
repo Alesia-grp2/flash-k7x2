@@ -19,7 +19,7 @@
 window.PAQUET = {
   id: "cartes-grpe2-2026-2027",
   titre: "Vocabulaire de français",
-  version: 1,
+  version: 2,
   cartes: [
     // ---------- Leçon 1 — Lundi 9/11/2026 ----------
     {
@@ -182,6 +182,46 @@ window.PAQUET = {
       mot: "culotté",
       definition: "Familier : qui ose agir ou parler sans aucune gêne, même si ce n'est pas poli.",
       exemples: ["Il est vraiment [culotté] : il a pris ma place sans rien me demander.", "Elle est [culottée] de me demander de l'argent après ce qu'elle m'a fait !"],
+      familier: true
+    },
+
+    // ---------- Leçon 3 — Lundi 16/11/2026 ----------
+    {
+      id: "L3-01",
+      lecon: "Leçon 3 — Lundi 16/11/2026",
+      mot: "se cotiser",
+      definition: "Donner chacun un peu d'argent pour payer ensemble quelque chose.",
+      exemples: ["Les collègues [se sont cotisés] pour offrir un cadeau à Marie.", "Si on [se cotise], on pourra louer une grande maison pour les vacances."]
+    },
+    {
+      id: "L3-02",
+      lecon: "Leçon 3 — Lundi 16/11/2026",
+      mot: "une cagnotte",
+      definition: "Somme d'argent que plusieurs personnes mettent ensemble pour un projet, un cadeau ou une dépense commune.",
+      exemples: ["On a lancé une [cagnotte] en ligne pour aider la famille du voisin.", "Il reste vingt euros dans la [cagnotte] du groupe."]
+    },
+    {
+      id: "L3-03",
+      lecon: "Leçon 3 — Lundi 16/11/2026",
+      mot: "éternuer",
+      definition: "Faire sortir l'air du nez et de la bouche d'un coup et avec du bruit, souvent quand on est enrhumé ou allergique.",
+      exemples: ["Elle [éternue] toute la journée depuis qu'elle a attrapé froid.", "Les pollens me font [éternuer] dès le mois de mars."]
+    },
+    {
+      id: "L3-04",
+      lecon: "Leçon 3 — Lundi 16/11/2026",
+      mot: "dégoûté",
+      definition: "Qui ressent une forte répulsion à cause d'une odeur, d'un aspect ou d'un goût.",
+      exemples: ["Il est [dégoûté] parce qu’il a trouvé des cheveux dans son assiette.", "Elle a quitté la table, [dégoûtée] par l'odeur du fromage."],
+      indice: "répulsion"
+    },
+    {
+      id: "L3-05",
+      lecon: "Leçon 3 — Lundi 16/11/2026",
+      mot: "dégoûté",
+      definition: "Très déçu et contrarié parce qu'une situation s'est mal passée.",
+      exemples: ["Je suis [dégoûté] : on a perdu le match à la dernière minute.", "Elle est [dégoûtée] d’avoir été licenciée un an avant sa retraite."],
+      indice: "déception",
       familier: true
     }
   ]
