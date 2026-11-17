@@ -114,6 +114,10 @@ b.hl{color:var(--accent)}
 .overlay .card{margin:6px 0}
 .overlay .btnrow{justify-content:center}
 .row .speak+.speak{margin-left:-2px}
+.searchbox{background:var(--accent-soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px 8px;margin:10px 0 16px}
+.searchbox .hintbox{margin-top:8px}
+.searchbox [role=status]:empty{display:none}
+.search{width:100%;margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;box-sizing:border-box}
 .speak.ring{outline:2px solid var(--accent);outline-offset:2px}
 [hidden]{display:none !important}
 </style>
@@ -230,6 +234,7 @@ var AIDE = {
         "<li>Le compteur à droite de chaque leçon indique combien de cartes tu as cochées (par exemple 3 / 7).</li>",
         "<li>Le <b>triangle</b> à gauche d'une leçon permet de la replier ou de la développer. La case <b>« Tout réduire »</b> replie toutes les leçons d'un coup ; en la décochant, tu les développes toutes.</li>",
         "<li>Le bouton 🔊 d'un mot te le fait écouter. Le bouton <b>œil</b> à côté affiche la <b>fiche du mot</b> : sa définition et toutes ses phrases d'exemple.</li>",
+        "<li>Le champ <b>Rechercher</b> en haut de la liste filtre les cartes d'après le mot lui-même ; la case <b>Rechercher partout</b> étend la recherche aux définitions, aux exemples, aux indices et aux noms de leçons. Majuscules et accents sont ignorés. Tu peux cocher les mots trouvés un par un, ou toute une leçon : seules les cartes affichées sont alors cochées.</li>",
         "<li>Un mot suivi d'un <b>astérisque</b> (par exemple « un flic* ») appartient au <b>registre familier</b> : on l'entend à l'oral entre amis, mais on l'évite à l'écrit soigné ou avec un supérieur.</li>",
         "<li>À côté de chaque mot déjà étudié, une pastille indique quand il reviendra : « À revoir », « Demain » ou « Dans n j ».</li>",
         "<li><b>Nouveautés</b> : quand ton professeur ajoute des cartes, un badge rouge apparaît sur l'onglet « Cartes ». Les nouveaux mots et leur leçon s'affichent en rouge, avec la pastille « Nouveau », jusqu'au prochain ajout.</li></ul>"] },
@@ -330,6 +335,7 @@ var AIDE = {
         "<li>The counter to the right of each lesson shows how many cards you have ticked (for example 3 / 7).</li>",
         "<li>The <b>triangle</b> to the left of a lesson folds or unfolds it. The <b>« Tout réduire »</b> (Collapse all) box folds every lesson at once; untick it to unfold them all.</li>",
         "<li>The 🔊 button next to a word plays it. The <b>eye</b> button beside it shows the word's <b>card</b>: its definition and all its example sentences.</li>",
+        "<li>The <b>Search</b> box at the top of the list filters the cards by the word itself; the <b>Search everywhere</b> box extends the search to definitions, examples, hints and lesson names. Capitals and accents are ignored. You can tick the matching words one by one, or a whole lesson: only the cards shown are then ticked.</li>",
         "<li>A word followed by an <b>asterisk</b> (for example « un flic* ») belongs to <b>informal (colloquial) French</b>: you hear it in everyday speech among friends, but you avoid it in careful writing or with a superior.</li>",
         "<li>Next to each word you have already studied, a label tells you when it will come back: « À revoir » (due now), « Demain » (tomorrow) or « Dans n j » (in n days).</li>",
         "<li><b>New words:</b> when your teacher adds cards, a red badge appears on the « Cartes » tab. The new words and their lesson are shown in red, with the label « Nouveau » (New), until the next addition.</li></ul>"] },
@@ -862,6 +868,7 @@ function demarrer() {
       groups[idx[g]].ids.push(c.id);
     });
 
+    var rows = {};
     var dets = [];
     var collapseAll = h('input', { type: 'checkbox' });
     function syncCollapseAll() {
@@ -874,16 +881,22 @@ function demarrer() {
       dets.forEach(function (x) { x.det.open = !collapseAll.checked; remember(x.name, x.det.open); });
       save();
     });
+    var filtering = false, filters = [];
+    var search = h('input', { type: 'search', class: 'search', placeholder: 'Rechercher un mot…', 'aria-label': 'Rechercher dans les cartes', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' });
+    var found = h('p', { class: 'muted small', role: 'status', 'aria-live': 'polite', style: 'margin:.4rem 0' });
+    var everywhere = h('input', { type: 'checkbox' });
+    var everywhereLbl = h('label', { class: 'hintbox small' }, everywhere, 'Rechercher partout (définitions, exemples…)');
+    var collapseLbl = h('label', { class: 'hintbox small' }, collapseAll, 'Tout réduire');
     box.append(
       h('p', { class: 'muted small' }, 'Coche les mots que tu veux mémoriser : ils te seront proposés régulièrement.'),
-      h('label', { class: 'hintbox small' }, collapseAll, 'Tout réduire'));
+      h('div', { class: 'searchbox', role: 'search' }, search, h('div', {}, everywhereLbl), found),
+      collapseLbl);
 
     groups.forEach(function (g) {
       var det = h('details', {});
       det.open = !store.collapsed[g.name];
       var lessonCb = h('input', { type: 'checkbox', 'aria-label': 'Tout sélectionner : ' + g.name });
       var count = h('span', { class: 'count' });
-      var boxes = [];
       var lessonIsNew = g.ids.some(function (id) { return hl[id]; });
       function refreshHead() {
         var n = g.ids.filter(function (id) { return store.selected[id]; }).length;
@@ -893,11 +906,10 @@ function demarrer() {
       }
       lessonCb.addEventListener('click', function (e) { e.stopPropagation(); });
       lessonCb.addEventListener('change', function () {
-        g.ids.forEach(function (id) { store.selected[id] = lessonCb.checked; });
-        boxes.forEach(function (b) { b.checked = lessonCb.checked; });
+        g.ids.forEach(function (id) { if (!rows[id].hidden) { store.selected[id] = lessonCb.checked; rows[id].cb.checked = lessonCb.checked; } });
         save(); refreshHead();
       });
-      det.addEventListener('toggle', function () { remember(g.name, det.open); save(); syncCollapseAll(); });
+      det.addEventListener('toggle', function () { if (filtering) return; remember(g.name, det.open); save(); syncCollapseAll(); });
       det.append(h('summary', {},
         h('span', { class: 'tri', 'aria-hidden': 'true' }), lessonCb,
         h('span', { class: lessonIsNew ? 'fresh' : '' }, g.name), count));
@@ -906,21 +918,54 @@ function demarrer() {
         var cb = h('input', { type: 'checkbox' });
         cb.checked = !!store.selected[id];
         cb.addEventListener('change', function () { store.selected[id] = cb.checked; save(); refreshHead(); });
-        boxes.push(cb);
         var chip = null;
         if (hl[id]) chip = h('span', { class: 'chip new' }, 'Nouveau');
         else if (s) {
           var d = s.due - today;
           chip = h('span', { class: 'chip' }, d <= 0 ? 'À revoir' : (d === 1 ? 'Demain' : 'Dans ' + d + ' j'));
         }
-        det.append(h('div', { class: 'row' },
+        var row = h('div', { class: 'row' },
           h('label', {}, cb, h('span', { class: 't' }, h('span', { class: hl[id] ? 'fresh' : '' }, motAff(c)), c.indice ? h('span', { class: 'indice' }, ' (' + c.indice + ')') : null, chip)),
-          eyeBtn(id), speakBtn(c.mot, c.audio)));
+          eyeBtn(id), speakBtn(c.mot, c.audio));
+        rows[id] = row; row.cb = cb;
+        det.append(row);
       });
       refreshHead();
-      dets.push({ det: det, name: g.name });
+      dets.push({ det: det, name: g.name, ids: g.ids });
       box.append(det);
     });
+
+    // Recherche : tous les mots saisis doivent se trouver dans le mot, l'indice, la définition, les exemples ou la leçon
+    function norm(t) {
+      return String(t || '').toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/[’‘]/g, "'")
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    var hay = {}, kw = {};
+    PAQUET.cartes.forEach(function (c) {
+      kw[c.id] = norm(c.mot);
+      hay[c.id] = norm([c.mot, c.indice, c.definition, c.lecon].concat((c.exemples || []).map(function (e) { return e.replace(/[\[\]]/g, ''); })).join(' | '));
+    });
+    function applyFilter() {
+      filters = norm(search.value).split(/\s+/).filter(Boolean);
+      filtering = filters.length > 0;
+      var total = 0;
+      dets.forEach(function (x) {
+        var n = 0;
+        x.ids.forEach(function (id) {
+          var src = everywhere.checked ? hay[id] : kw[id];
+          var ok = filters.every(function (f) { return src.indexOf(f) !== -1; });
+          rows[id].hidden = !ok; if (ok) n++;
+        });
+        total += n;
+        x.det.hidden = filtering && n === 0;
+        if (filtering) x.det.open = true; else x.det.open = !store.collapsed[x.name];
+      });
+      collapseLbl.hidden = filtering;
+      found.textContent = !filtering ? '' : (total === 0 ? 'Aucune carte ne correspond.' : (total === 1 ? '1 carte trouvée.' : total + ' cartes trouvées.'));
+      if (!filtering) syncCollapseAll();
+    }
+    search.addEventListener('input', applyFilter);
+    everywhere.addEventListener('change', applyFilter);
 
     syncCollapseAll();
     store.highlightSeen = true;     // le badge disparaît ; le rouge, lui, reste jusqu'au prochain ajout
