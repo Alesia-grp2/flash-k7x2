@@ -19,7 +19,7 @@
 window.PAQUET = {
   id: "cartes-grpe2-2026-2027",
   titre: "Vocabulaire de français",
-  version: 2,
+  version: 1,
   cartes: [
     // ---------- Leçon 1 — Lundi 9/11/2026 ----------
     {
@@ -223,6 +223,60 @@ window.PAQUET = {
       exemples: ["Je suis [dégoûté] : on a perdu le match à la dernière minute.", "Elle est [dégoûtée] d’avoir été licenciée un an avant sa retraite."],
       indice: "déception",
       familier: true
+    },
+
+    // ---------- Leçon 4 — Jeudi 19/11/2026 ----------
+    {
+      id: "L4-01",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "persuader",
+      definition: "Amener quelqu'un à croire ou à faire quelque chose en lui donnant de bonnes raisons.",
+      exemples: ["Elle [a persuadé] son mari de déménager à la campagne.", "Les vendeurs essaient de nous [persuader] d'acheter des produits inutiles."]
+    },
+    {
+      id: "L4-02",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "dissuader",
+      definition: "Amener quelqu'un à ne pas faire quelque chose qu'il avait l’intention de faire.",
+      exemples: ["Mes parents ont voulu me [dissuader] de partir seul en voyage.", "Les prix très élevés [dissuadent] beaucoup de touristes de venir ici."]
+    },
+    {
+      id: "L4-03",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "la fourrure",
+      definition: "Poils épais et doux qui couvrent le corps de certains animaux, ou peau de ces animaux utilisée pour fabriquer des vêtements.",
+      exemples: ["Le renard a une [fourrure] rousse très épaisse en hiver.", "Elle portait un manteau en [fourrure] sur les épaules."]
+    },
+    {
+      id: "L4-04",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "un raton laveur",
+      definition: "Petit animal d'Amérique du Nord, gris, avec un masque noir sur les yeux, qui trempe sa nourriture dans l'eau avant de la manger.",
+      exemples: ["Un [raton laveur] a fouillé dans nos poubelles cette nuit.", "Au zoo, les enfants ont adoré regarder les [ratons laveurs]."]
+    },
+    {
+      id: "L4-05",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "des rayures",
+      definition: "Lignes longues et étroites, d'une autre couleur que le fond, sur un tissu ou sur le corps d'un animal.",
+      exemples: ["Le zèbre a des [rayures] noires et blanches.", "Il porte une chemise à [rayures] bleues et blanches."],
+      indice: "dessin"
+    },
+    {
+      id: "L4-06",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "des rayures",
+      definition: "Marques fines et longues faites sur une surface par un objet pointu ou dur.",
+      exemples: ["Quelqu'un a fait des [rayures] sur la portière de ma voiture.", "Il y a plusieurs [rayures] sur l’écran de mon téléphone."],
+      indice: "dommages"
+    },
+    {
+      id: "L4-07",
+      lecon: "Leçon 4 — Jeudi 19/11/2026",
+      mot: "un quartier (de la lune)",
+      definition: "Chacune des deux phases de la Lune où l'on voit exactement la moitié de sa surface éclairée.",
+      exemples: ["Le premier [quartier] de la lune ressemble à un D majuscule.", "Il y a une semaine, la lune était pleine. Ce soir, elle est au dernier [quartier] ."],
+      indice: "lune"
     }
   ]
 };
