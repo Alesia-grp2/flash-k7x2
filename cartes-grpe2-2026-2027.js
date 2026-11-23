@@ -277,6 +277,57 @@ window.PAQUET = {
       definition: "Chacune des deux phases de la Lune où l'on voit exactement la moitié de sa surface éclairée.",
       exemples: ["Le premier [quartier] de la lune ressemble à un D majuscule.", "Il y a une semaine, la lune était pleine. Ce soir, elle est au dernier [quartier] ."],
       indice: "lune"
+    },
+
+    // ---------- Leçon 5 — Lundi 23/11/2026 ----------
+    {
+      id: "L5-01",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "un dissident",
+      definition: "Personne qui n'est pas d'accord avec le pouvoir ou avec son groupe et qui le dit ouvertement.",
+      exemples: ["Le régime a emprisonné plusieurs [dissidents] politiques.", "Un [dissident] du parti a voté contre la décision de sa direction."]
+    },
+    {
+      id: "L5-02",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "entraver",
+      definition: "Gêner quelqu'un ou quelque chose dans son mouvement ou dans son développement.",
+      exemples: ["Les travaux [entravent] la circulation dans tout le quartier.", "Le manque d'argent [a entravé] la réalisation de ce projet."]
+    },
+    {
+      id: "L5-03",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "anéantir",
+      definition: "Détruire complètement, faire disparaître totalement.",
+      exemples: ["Le tremblement de terre [a anéanti] tout le village.", "Cet échec [a anéanti] tous ses espoirs."]
+    },
+    {
+      id: "L5-04",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "un pli",
+      definition: "Ligne ou marque qui se forme quand on plie un tissu ou du papier.",
+      exemples: ["Cette jupe a de jolis [plis] sur le devant.", "Elle a repassé sa chemise pour enlever tous les [plis]."]
+    },
+    {
+      id: "L5-05",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "un abat-jour",
+      definition: "Objet en tissu ou en papier que l'on place autour d'une ampoule pour adoucir la lumière.",
+      exemples: ["J'ai changé l'[abat-jour] de la lampe du salon.", "Un [abat-jour] rouge donne une lumière chaude à la chambre."]
+    },
+    {
+      id: "L5-06",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "un garde-fou",
+      definition: "Barrière au bord d'un pont ou d'un balcon pour empêcher de tomber ; par extension, règle ou personne qui empêche d'aller trop loin ou de faire des erreurs graves.",
+      exemples: ["Il y a un [garde-fou] le long du pont pour éviter les chutes.", "La constitution sert de [garde-fou] contre les dérives autoritaires."]
+    },
+    {
+      id: "L5-07",
+      lecon: "Leçon 5 — Lundi 23/11/2026",
+      mot: "un échafaudage",
+      definition: "Structure provisoire en métal ou en bois qui permet aux ouvriers de travailler en hauteur sur un bâtiment.",
+      exemples: ["Les ouvriers ont monté un [échafaudage] devant la façade de l'immeuble.", "On ne voit plus l'église à cause de l'[échafaudage] installé pour les travaux."]
     }
   ]
 };
