@@ -19,7 +19,7 @@
 window.PAQUET = {
   id: "cartes-grpe2-2026-2027",
   titre: "Vocabulaire de français",
-  version: 1,
+  version: 2,
   cartes: [
     // ---------- Leçon 1 — Lundi 9/11/2026 ----------
     {
@@ -328,6 +328,57 @@ window.PAQUET = {
       mot: "un échafaudage",
       definition: "Structure provisoire en métal ou en bois qui permet aux ouvriers de travailler en hauteur sur un bâtiment.",
       exemples: ["Les ouvriers ont monté un [échafaudage] devant la façade de l'immeuble.", "On ne voit plus l'église à cause de l'[échafaudage] installé pour les travaux."]
+    },
+
+    // ---------- Leçon 6 — Jeudi 26/11/2026 ----------
+    {
+      id: "L6-01",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "langer",
+      definition: "Mettre sa couche à un bébé et le rhabiller proprement.",
+      exemples: ["Il [a langé] le bébé avant de le recoucher.", "Dans les toilettes de ce centre commercial, il y a une table pour [langer] les bébés."]
+    },
+    {
+      id: "L6-02",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "une couche",
+      definition: "Protection absorbante, en tissu ou en papier, que l'on place autour des fesses d'un bébé.",
+      exemples: ["J'ai oublié d'acheter des [couches] pour le bébé.", "Il faut changer la [couche] de Léa : elle est mouillée."]
+    },
+    {
+      id: "L6-03",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "une culotte",
+      definition: "Sous-vêtement, généralement féminin, qui couvre le bas du ventre et les fesses.",
+      exemples: ["Ma fille de trois ans apprend à mettre sa [culotte] toute seule.", "J’ai mis des [culottes] de rechange dans ma valise de cabine.."]
+    },
+    {
+      id: "L6-04",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "un mégot",
+      definition: "Reste d'une cigarette que l'on a fumée.",
+      exemples: ["Le cendrier était plein de [mégots].", "On a retrouvé un [mégot] dans la forêt : c'est peut-être lui qui a causé l'incendie."]
+    },
+    {
+      id: "L6-05",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "un rempart",
+      definition: "Mur épais qui entourait une ville pour la défendre ; par extension, ce qui protège contre un danger.",
+      exemples: ["Les touristes se promènent sur les [remparts] de la vieille ville.", "La culture est un [rempart] contre l'ignorance."]
+    },
+    {
+      id: "L6-06",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "un corsaire",
+      definition: "Marin qui attaquait les bateaux ennemis en temps de guerre, avec l'autorisation de son pays.",
+      exemples: ["Surcouf est un [corsaire] français très célèbre.", "Au XVIIe siècle, les [corsaires] de Saint-Malo attaquaient les navires anglais."]
+    },
+    {
+      id: "L6-07",
+      lecon: "Leçon 6 — Jeudi 26/11/2026",
+      mot: "culotté",
+      definition: "Qui ose agir ou parler sans aucune gêne, même si ce n'est pas poli.",
+      exemples: ["Je trouve ce type très [culotté] : il a doublé toute la file d'attente.", "Elle est [culottée] de demander une augmentation après une semaine de travail !"]
     }
   ]
 };
